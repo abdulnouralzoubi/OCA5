@@ -9,7 +9,7 @@ The goal of this project is to demonstrate proficiency in creating wireframes an
 
 # How to View the Design
 To view the wireframe and mockup:
-1. Open the [Wireframe.pdf](/01%20Wireframe.pdf") and [Mockup.pdf](/02%20Mockup.pdf) files online through GitHub, or in any PDF viewer.
+1. Open the [Wireframe.pdf](/01%20Wireframe.pdf) and [Mockup.pdf](/02%20Mockup.pdf) files online through GitHub, or in any PDF viewer.
 2. You can also check the [All.pdf](/00%20All.pdf), which contains the Original, Wireframe, and Mockup files all together side by side, from left to right.
 3. Through the link on [**figma**](https://www.figma.com/design/HNkxyI4pFBSAxFS1OyGEQ3), where the elements/layers are visible.
 
