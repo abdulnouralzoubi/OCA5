@@ -1,0 +1,16 @@
+body {
+    background-color: #FFFFCE;
+}
+fieldset {
+    width: 700px;
+    background-color: white;
+}
+.ocolor {
+    background-color: #FDCA96;
+}
+.ycolor {
+    background-color: yellow;
+}
+.fs, .pg {
+    color: red; border: dotted red
+}
