@@ -1,0 +1,9 @@
+[submodule "OCA-Task-001-Wireframe-Mockup"]
+	path = OCA-Task-001-Wireframe-Mockup
+	url = git@github.com:abdulnouralzoubi/OCA-Task-001-Wireframe-Mockup.git
+[submodule "OCA-Task-002-HTML-CSS"]
+	path = OCA-Task-002-HTML-CSS
+	url = git@github.com:abdulnouralzoubi/OCA-Task-2-HTML-CSS.git
+[submodule "OCA-Task-003-HTML-CSS-Position-Float"]
+	path = OCA-Task-003-HTML-CSS-Position-Float
+	url = git@github.com:abdulnouralzoubi/OCA-Task-3-HTML-CSS.git
