@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            box-sizing: border-box;
+            padding: 0%;
+            margin: 0%;
+        }
+        .container{
+            display: grid;
+            padding: 2px;
+            margin: 2px;
+            grid-template-columns: repeat(auto-fill, minmax(33%, 1fr)); /* 300px > g responsive */
+            grid-auto-rows: 30vh; /* 250x >     gallery responsive */
+        }
+        .box{
+            margin: 2px;
+        }
+        img{
+            width: 99%; height: 99%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"><img src="Exer-06 Grid Gallery mountain.png" alt=""></div>
+        <div class="box"><img src="Exer-06 Grid Gallery lake.png" alt=""></div>
+        <div class="box"><img src="Exer-06 Grid Gallery forest.png" alt=""></div>
+        <div class="box"><img src="Exer-06 Grid Gallery skyscraper.png" alt=""></div>
+        <div class="box"><img src="Exer-06 Grid Gallery tree.png" alt=""></div>
+        <div class="box"><img src="Exer-06 Grid Gallery piano.png" alt=""></div>
+        <div class="box"><img src="Exer-06 Grid Gallery guitar.png" alt=""></div>
+        <div class="box"><img src="Exer-06 Grid Gallery guitarw.png" alt=""></div>
+    </div>
+</body>
+</html>

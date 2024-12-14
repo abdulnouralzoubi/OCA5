@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{color: whitesmoke; font-family: Arial;}
+        .grid-wrapper{
+            display: grid;
+            gap: 10px;
+        }
+
+        .all{
+            background-color: #46B2FD;
+            border-radius: 5px;
+            min-height: 40px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            min-height: 50px;
+            height: fit-content;
+        }
+
+        .one    {grid-column: span 60;}
+        .two    {grid-column: span 30;}
+        .three  {grid-column: span 20;}
+        .four   {grid-column: span 15;}
+        .five   {grid-column: span 12;}
+        .six    {grid-column: span 10;}
+        .why    {
+            grid-area: span 2 / span 60;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-wrapper">
+        <div class="all one">60 GS is starter kit for the CSS Grid.</div>
+        <div class="all two">1</div>
+        <div class="all two">2</div>
+        <div class="all three">1</div>
+        <div class="all three">2</div>
+        <div class="all three">3</div>
+        <div class="all four">1</div>
+        <div class="all four">2</div>
+        <div class="all four">3</div>
+        <div class="all four">4</div>
+        <div class="all five">1</div>
+        <div class="all five">2</div>
+        <div class="all five">3</div>
+        <div class="all five">4</div>
+        <div class="all five">5</div>
+        <div class="all six">1</div>
+        <div class="all six">2</div>
+        <div class="all six">3</div>
+        <div class="all six">4</div>
+        <div class="all six">5</div>
+        <div class="all six">6</div>
+        <div class="all why">
+            <p>Why 60?</p>
+            <p>Because the number 60 is dividable by 2, 3, 4, 5 and 6.</p>
+        </div>
+    </div>
+</body>
+</html>
