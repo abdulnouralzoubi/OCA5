@@ -1,0 +1,111 @@
+body{
+    background-color: #EBEBEC;
+    font-family: Arial;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.top{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Default to 6 boxes in a row */
+    gap: 1.5vw;
+    margin-bottom: 1.5vw;
+}
+.blue {background-color:rgb(39,169,227); text-align: center;padding-top: 30px; color: white;}
+.red{background-color: rgb(218,84,46); text-align: center; padding-top: 30px; color: white;}
+.gre{ background-color: rgb(40,183,121); text-align: center; padding-top: 30px; color: white;}
+.darkbl{background-color: rgb(34,85,164); text-align: center; padding-top: 30px; color: white;}
+.yel{background-color: #ffb848; text-align: center; padding-top: 30px; color: white;}
+.item2{grid-column: 2/4; grid-row: 1; }
+.item6{grid-column: 1/3; grid-row: 2; }
+.down{
+    display: flex;
+    width: auto;
+    height: auto;  /* Make height flexible */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1vw;
+    padding: 1vw;
+}
+.left{  
+    width: 74%;
+    display: flex;
+    /* align-items: center; */
+}
+.left img{
+    width: 100%;
+    height: auto;
+}
+
+.white{background-color: white; padding: 10px;}
+.right{
+    width: 24%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-content: center;
+}
+.white .hd-2 {
+    opacity: 0.2;
+    font-size: 18px;
+}
+.white .header {
+    margin: 5px;
+
+}
+/* .right div {
+    min-width: 141px;
+} */
+.ele{
+    background-color:#343a40;
+    text-align: center;
+    color: white;
+    height: 100px;
+    min-width: 125px;
+}
+.ele div:nth-child(2){
+    font-size: 18px;
+    font-weight: bold;
+}
+.ele div:nth-child(3){
+    font-size: 11px;
+}
+
+/* Media Query for small screens */
+@media screen and (max-width: 1000px) {
+    .top{
+        grid-template-columns: repeat(2, 1fr); /* 2 boxes per row for smaller screens */
+        gap: 1.5vw;
+    }
+    .top div {
+        grid-column: span 1;
+    }
+    .left{
+        width: 100%;
+        display: none;
+    }
+
+    .right{
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr); /* 2 boxes per row in the right section */
+        gap: 20px;
+        justify-content: center;
+        height: auto;  /* Remove height restriction */
+    }
+
+    .down{
+        flex-direction: column;
+    }
+}
+
+/* Media Query for very small screens */
+@media screen and (max-width: 480px) {
+    .top{
+        grid-template-columns: 1fr; /* 1 box per row for very small screens */
+        gap: 10px;
+    }
+
+    .right{
+        grid-template-columns: 1fr; /* 1 box per row in the right section */
+        width: 100%;
+    }
+}
