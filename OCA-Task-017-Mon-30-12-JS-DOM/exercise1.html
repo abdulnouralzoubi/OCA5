@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Exercise #1: Changing the text in the div when mouse over and return it
+      back when mouse out
+    </title>
+    <style>
+      #mydiv {
+        width: 300px;
+        height: 50px;
+        line-height: 50px; /* for vertical alignment of text */
+        text-align: center;
+        border: 1px solid black;
+        background-color: yellow;
+        font-size: 2em;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mydiv">Hello world</div>
+    <script>
+      function mOver(obj) {
+        obj.innerHTML = "How can I help you";
+      }
+
+      function mOut(obj) {
+        obj.innerHTML = "Hello world";
+      }
+      document
+        .getElementById("mydiv")
+        .setAttribute("onmouseover", "mOver(this)");
+      document.getElementById("mydiv").setAttribute("onmouseout", "mOut(this)");
+
+      const myDiv = document.getElementById("mydiv");
+
+      myDiv.onmouseover = function () {
+        this.innerHTML = "How can I help you";
+        // this.style.backgroundColor = "red";
+      };
+
+      myDiv.onmouseout = function () {
+        this.innerHTML = "Hello world";
+        // this.style.backgroundColor = "green";
+      };
+    </script>
+  </body>
+</html>

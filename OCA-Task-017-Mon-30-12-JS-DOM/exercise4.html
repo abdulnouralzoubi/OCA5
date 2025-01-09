@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Exercise #5: Input check for minimmum number of charecter should be 6 and
+      password match in both input
+    </title>
+    <style>
+      * {
+        font-family: Arial, sans-serif;
+      }
+
+      .err {
+        color: red;
+        font-size: 0.7em;
+      }
+    </style>
+    <script>
+      /* TODO complete this part */
+    </script>
+  </head>
+  <body>
+    <form name="pw">
+      <table>
+        <tr>
+          <td>Password (min 6 characters):</td>
+          <td>
+            <input
+              type="password"
+              name="password1"
+              id="password1"
+              size="10"
+              placeholder="Password"
+            />
+          </td>
+          <td>
+            <div id="pw1_check" class="err"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>Repeat password:</td>
+          <td>
+            <input
+              type="password"
+              name="password2"
+              id="password2"
+              size="10"
+              placeholder="Password"
+            />
+          </td>
+          <td>
+            <div id="pw2_check" class="err"></div>
+          </td>
+        </tr>
+      </table>
+
+      <input type="submit" value="Submit" id="submitBtn" />
+    </form>
+    <script>
+      const inputField1 = document.getElementById("password1");
+      const inputField2 = document.getElementById("password2");
+      const message1 = document.getElementById("pw1_check");
+      const message2 = document.getElementById("pw2_check");
+
+      inputField1.addEventListener("input", function () {
+        const value = inputField1.value;
+        if (value.length < 6) {
+          message1.innerHTML = "Password must be at least 6 characters long.";
+        } else {
+          message1.innerHTML = "";
+        }
+      });
+
+      inputField2.addEventListener("input", function () {
+        const value1 = inputField1.value;
+        const value2 = inputField2.value;
+        if (value1 !== value2) {
+          message2.innerHTML = "Passwords do not match.";
+        } else {
+          message2.innerHTML = "";
+        }
+      });
+    </script>
+  </body>
+</html>

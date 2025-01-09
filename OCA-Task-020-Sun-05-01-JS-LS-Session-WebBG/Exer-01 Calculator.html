@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        background-color: #a8bf7e;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 4em;
+        -webkit-text-stroke: 1px gray;
+        display: grid;
+        /* justify-content: center;
+            align-content: center; */
+        place-items: center;
+      }
+
+      .container {
+        background-color: #a0d0ea;
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: 2% repeat(4, 1fr) 2%;
+        grid-template-rows: 2% 2fr repeat(4, 1fr) 2%;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .all {
+        background-color: #efefef;
+        box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        min-width: 150px;
+        min-height: 10vh;
+        font-size: 3rem;
+      }
+
+      .output-screen {
+        background-color: #f1fbeb;
+        grid-area: 2 / 2 / 3 / 6;
+        margin-bottom: 3%;
+        min-height: 20vh;
+      }
+
+      .num0 {
+        grid-area: 6 / 3;
+      }
+      .num1 {
+        grid-area: 3 / 2;
+      }
+      .num2 {
+        grid-area: 3 / 3;
+      }
+      .num3 {
+        grid-area: 3 / 4;
+      }
+      .num4 {
+        grid-area: 4 / 2;
+      }
+      .num5 {
+        grid-area: 4 / 3;
+      }
+      .num6 {
+        grid-area: 4 / 4;
+      }
+      .num7 {
+        grid-area: 5 / 2;
+      }
+      .num8 {
+        grid-area: 5 / 3;
+      }
+      .num9 {
+        grid-area: 5 / 4;
+      }
+
+      .operations {
+        background-color: #efff93;
+      }
+
+      .op-add {
+        grid-area: 3 / 5;
+      }
+      .op-subtract {
+        grid-area: 4 / 5;
+      }
+      .op-multiply {
+        grid-area: 5 / 5;
+      }
+      .op-divide {
+        grid-area: 6 / 5;
+      }
+
+      .calculate {
+        grid-area: 6 / 4;
+        background-color: rgba(32, 178, 171, 0.609);
+      } /* Made by Dunour */
+
+      .clear {
+        grid-area: 6 / 2;
+        background-color: #fe9fa9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="all output-screen"></div>
+
+      <button class="all nums num1" id="num1">1</button>
+      <button class="all nums num2" id="num2">2</button>
+      <button class="all nums num3" id="num3">3</button>
+      <button class="all nums num4" id="num4">4</button>
+      <button class="all nums num5" id="num5">5</button>
+      <button class="all nums num6" id="num6">6</button>
+      <button class="all nums num7" id="num7">7</button>
+      <button class="all nums num8" id="num8">8</button>
+      <button class="all nums num9" id="num9">9</button>
+      <button class="all nums num0" id="num0">0</button>
+
+      <button class="all operations op-add" id="op-add">+</button>
+      <button class="all operations op-subtract" id="op-subtract">-</button>
+      <button class="all operations op-multiply" id="op-multiply">*</button>
+      <button class="all operations op-divide" id="op-divide">/</button>
+
+      <button class="all calculate" id="calculate">=</button>
+
+      <button class="all clear" id="clear">C</button>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      const buttons = document.querySelectorAll(".nums, .operations");
+      const outputScreen = document.querySelector(".output-screen");
+      let currentInput = "";
+
+      function updateScreen(value) {
+        currentInput += value;
+        outputScreen.textContent = currentInput;
+      }
+
+      function clearScreen() {
+        currentInput = "";
+        outputScreen.textContent = currentInput;
+      }
+
+      function calculateResult() {
+        try {
+        currentInput = eval(currentInput).toString();
+        outputScreen.textContent = currentInput;
+        } catch (error) {
+        outputScreen.textContent = "Error";
+        }
+      }
+
+      buttons.forEach(button => {
+        button.addEventListener("click", () => {
+        updateScreen(button.textContent);
+        });
+      });
+
+      document.getElementById("clear").addEventListener("click", clearScreen);
+      document.getElementById("calculate").addEventListener("click", calculateResult);
+
+      document.addEventListener("keydown", function (event) {
+        const key = event.key;
+        if (!isNaN(key) || ["+", "-", "*", "/"].includes(key)) {
+        updateScreen(key);
+        } else if (key === "Enter") {
+        calculateResult();
+        } else if (key === "Escape") {
+        clearScreen();
+        }
+      });
+      });
+    </script>
+    </script>
+    </script>
+  </body>
+</html>

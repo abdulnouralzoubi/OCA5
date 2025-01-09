@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/exercise7.js" defer></script>
+    <title>Exercise7 - Flags</title>
+    <style>
+      body {
+        padding: 10px 40px;
+      }
+
+      #img {
+        width: 600px;
+        height: 400px;
+        border: solid;
+      }
+    </style>
+  </head>
+
+  <body>
+    <select name="" id="flags">
+      <option value="russia" selected>Russia</option>
+      <option value="spain">Spain</option>
+      <option value="italy">Italy</option>
+    </select>
+    <div id="img"></div>
+    <script>
+      // const select = document.createElement("select"); select.id = 'flags';
+      // const option1 = document.createElement("option"); option1.value = "russia"; 
+      let img = document.getElementById("img");
+      let select = document.getElementById("flags");
+      select.addEventListener("change", function () {
+        img.style.backgroundImage = `url(./${select.value}.png)`;
+        img.style.backgroundSize = "contain";
+        img.style.backgroundRepeat = "no-repeat";
+        console.log(select.value);
+      });
+    </script>
+  </body>
+</html>

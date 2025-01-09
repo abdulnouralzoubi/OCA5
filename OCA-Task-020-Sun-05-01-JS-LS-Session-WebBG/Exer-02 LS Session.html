@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards - Add - Total</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f1f1f1;
+      }
+      html {
+        box-sizing: border-box;
+      }
+      #container {
+        padding: 20px;
+      }
+      #top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .card {
+        width: 200px;
+        height: auto;
+        margin: 10px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        overflow: hidden;
+      }
+      .card-img-top {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+      .card:hover {
+        border: 3px solid rgba(0, 94, 255, 0.512);
+      }
+      .card-title {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+      .card-body {
+        font-size: 0.9rem;
+        padding: 10px;
+        background-color: white;
+      }
+      .add-to-cart {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.3s;
+      }
+      .add-to-cart:hover {
+        background-color: #0056b3;
+      }
+      .card-bottom {
+        display: flex;
+        justify-content: center;
+      }
+      #basket {
+        width: 670px;
+        margin: 20px auto;
+        padding: 10px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .basket-item {
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+      .item-img img {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+      .basket-item * {
+        display: flex;
+        align-items: center;
+      }
+      .item-amount {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .item-amount button {
+        border: none;
+        padding: 5px;
+        background-color: white;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .item-amount span {
+        background-color: #2b2b2b;
+        border: none;
+        padding: 5px 10px;
+        color: white;
+        border-radius: 5px;
+        margin: 0 5px;
+      }
+      #total {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 20px;
+      }
+      #save {
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+      }
+      #save:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="top">
+        <div class="card text-start">
+          <img class="card-img-top" src="mobile.webp" alt="Title" />
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Iphone 13 pro</h4>
+              <h4>900 JD</h4>
+            </div>
+            <p class="card-bottom">
+              <button class="add-to-cart">add to cart</button>
+            </p>
+          </div>
+        </div>
+        <div class="card text-start">
+          <img class="card-img-top" src="headphone.webp" alt="Title" />
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Headset</h4>
+              <h4>150 JD</h4>
+            </div>
+            <p class="card-bottom">
+              <button class="add-to-cart">add to cart</button>
+            </p>
+          </div>
+        </div>
+        <div class="card text-start">
+          <img class="card-img-top" src="keyboard.webp" alt="Title" />
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Keyboard</h4>
+              <h4>60 JD</h4>
+            </div>
+            <p class="card-bottom">
+              <button class="add-to-cart">add to cart</button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="basket"></div>
+      <div id="total"></div>
+      <button id="save">Save</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".add-to-cart");
+        const basket = document.getElementById("basket");
+        const total = document.getElementById("total");
+        const saveButton = document.getElementById("save");
+
+        function loadStorageData(storage) {
+          const data = storage.getItem("basket");
+          if (data) {
+            const items = JSON.parse(data);
+            items.forEach(addItemToBasket);
+            updateTotal();
+          }
+        }
+
+        function saveToStorage(storage) {
+          const items = Array.from(basket.children).map((item) => ({
+            imgSrc: item.querySelector(".item-img img").src,
+            itemName: item.querySelector(".item-name").textContent,
+            itemPrice: parseInt(
+              item.querySelector(".item-price").dataset.price
+            ),
+            amount: parseInt(
+              item.querySelector(".item-amount span").textContent
+            ),
+          }));
+          storage.setItem("basket", JSON.stringify(items));
+        }
+
+        function addItemToBasket({ imgSrc, itemName, itemPrice, amount }) {
+          const basketItem = document.createElement("div");
+          basketItem.classList.add("basket-item");
+          basketItem.innerHTML = `
+        <div class="item-img"><img src="${imgSrc}" alt="item" /></div>
+        <div class="item-name">${itemName}</div>
+        <div class="item-amount">
+          <button class="decrease">-</button>
+          <span>${amount}</span>
+          <button class="increase">+</button>
+        </div>
+        <div class="item-price" data-price="${itemPrice}">${
+            itemPrice * amount
+          } JD</div>
+          `;
+          basket.appendChild(basketItem);
+          addEventListenersToButtons(basketItem);
+        }
+
+        function addEventListenersToButtons(basketItem) {
+          basketItem
+            .querySelector(".decrease")
+            .addEventListener("click", () => {
+              let amount = parseInt(
+                basketItem.querySelector(".item-amount span").textContent
+              );
+              if (amount > 1) {
+                amount--;
+                basketItem.querySelector(".item-amount span").textContent =
+                  amount;
+                const itemPrice = parseInt(
+                  basketItem.querySelector(".item-price").dataset.price
+                );
+                basketItem.querySelector(".item-price").textContent = `${
+                  itemPrice * amount
+                } JD`;
+              } else {
+                basketItem.remove();
+              }
+              updateTotal();
+              saveToStorage(sessionStorage);
+            });
+
+          basketItem
+            .querySelector(".increase")
+            .addEventListener("click", () => {
+              let amount = parseInt(
+                basketItem.querySelector(".item-amount span").textContent
+              );
+              amount++;
+              basketItem.querySelector(".item-amount span").textContent =
+                amount;
+              const itemPrice = parseInt(
+                basketItem.querySelector(".item-price").dataset.price
+              );
+              basketItem.querySelector(".item-price").textContent = `${
+                itemPrice * amount
+              } JD`;
+              updateTotal();
+              saveToStorage(sessionStorage);
+            });
+        }
+
+        cards.forEach((card) => {
+          card.addEventListener("click", (event) => {
+            const cardElement = event.target.closest(".card");
+            const imgSrc = cardElement.querySelector(".card-img-top").src;
+            const itemName =
+              cardElement.querySelector(".card-title h4").textContent;
+            const itemPrice = parseInt(
+              cardElement.querySelector(".card-title h4:nth-child(2)")
+                .textContent
+            );
+
+            let existingItem = Array.from(basket.children).find(
+              (item) =>
+                item.querySelector(".item-name").textContent === itemName
+            );
+
+            if (existingItem) {
+              let amount = parseInt(
+                existingItem.querySelector(".item-amount span").textContent
+              );
+              amount++;
+              existingItem.querySelector(".item-amount span").textContent =
+                amount;
+              existingItem.querySelector(".item-price").textContent = `${
+                itemPrice * amount
+              } JD`;
+            } else {
+              addItemToBasket({ imgSrc, itemName, itemPrice, amount: 1 });
+            }
+            updateTotal();
+            saveToStorage(sessionStorage);
+          });
+        });
+
+        function updateTotal() {
+          let totalAmount = 0;
+          document.querySelectorAll(".basket-item").forEach((item) => {
+            const itemPrice = parseInt(
+              item.querySelector(".item-price").textContent
+            );
+            totalAmount += itemPrice;
+          });
+          total.innerHTML = `Total: ${totalAmount} JD`;
+        }
+
+        saveButton.addEventListener("click", () => saveToStorage(localStorage));
+
+        if (!sessionStorage.getItem("basket")) {
+          loadStorageData(localStorage);
+        }
+        loadStorageData(sessionStorage);
+      });
+    </script>
+  </body>
+</html>

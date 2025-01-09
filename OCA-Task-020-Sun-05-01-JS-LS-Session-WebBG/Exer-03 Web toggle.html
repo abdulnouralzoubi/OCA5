@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://www.w3schools.com/lib/w3-theme-black.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      :root {
+        --medium-dark: #333;
+        --medium-light: #f4f4f4;
+        --dark: #222;
+        --light: #f4f4f4;
+        --mode-color: #f4f4f4;
+      }
+      html,
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Roboto", sans-serif;
+      }
+      .w3-sidebar {
+        z-index: 3;
+        width: 250px;
+        top: 43px;
+        bottom: 0;
+        height: inherit;
+      }
+      .color-picker {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border-bottom: 1px solid #ccc;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+      .color-option {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .save-reset-buttons {
+        margin-left: 20px;
+      }
+      .save-reset-buttons button {
+        margin: 0 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      body {
+        padding-top: 60px; /* Adjust this value if needed */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="color-picker">
+      <div
+        class="color-option"
+        style="background-color: #ff0000"
+        data-color="#ff0000"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #00ff00"
+        data-color="#00ff00"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #0000ff"
+        data-color="#0000ff"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #ffff00"
+        data-color="#ffff00"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #ff00ff"
+        data-color="#ff00ff"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #00ffff"
+        data-color="#00ffff"
+      ></div>
+      <div class="save-reset-buttons">
+        <button id="save-color">Save</button>
+        <button id="reset-color">Reset</button>
+      </div>
+    </div>
+    <!-- Navbar -->
+    <div class="w3-top">
+      <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+        <a
+          class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+          href="javascript:void(0)"
+          onclick="w3_open()"
+          ><i class="fa fa-bars"></i
+        ></a>
+        <a href="#" class="w3-bar-item w3-button w3-theme-l1">Logo</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white"
+          >About</a
+        >
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white"
+          >Values</a
+        >
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white"
+          >News</a
+        >
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white"
+          >Contact</a
+        >
+        <a
+          href="#"
+          class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white"
+          >Clients</a
+        >
+        <a
+          href="#"
+          class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white"
+          >Partners</a
+        >
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <nav
+      class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left"
+      id="mySidebar"
+    >
+      <a
+        href="javascript:void(0)"
+        onclick="w3_close()"
+        class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large"
+        title="Close Menu"
+      >
+        <i class="fa fa-remove"></i>
+      </a>
+      <h4 class="w3-bar-item"><b>Menu</b></h4>
+      <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+      <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+      <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+      <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div
+      class="w3-overlay w3-hide-large"
+      onclick="w3_close()"
+      style="cursor: pointer"
+      title="close side menu"
+      id="myOverlay"
+    ></div>
+
+    <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+    <div class="w3-main" style="margin-left: 250px">
+      <div class="w3-row w3-padding-64">
+        <div class="w3-twothird w3-container">
+          <h1 class="w3-text-teal">Heading</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+          </p>
+        </div>
+        <div class="w3-third w3-container">
+          <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+          <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+        </div>
+      </div>
+
+      <div class="w3-row">
+        <div class="w3-twothird w3-container">
+          <h1 class="w3-text-teal">Heading</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+          </p>
+        </div>
+        <div class="w3-third w3-container">
+          <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+          <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+        </div>
+      </div>
+
+      <div class="w3-row w3-padding-64">
+        <div class="w3-twothird w3-container">
+          <h1 class="w3-text-teal">Heading</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+          </p>
+        </div>
+        <div class="w3-third w3-container">
+          <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+          <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="w3-center w3-padding-32">
+        <div class="w3-bar">
+          <a class="w3-button w3-black" href="#">1</a>
+          <a class="w3-button w3-hover-black" href="#">2</a>
+          <a class="w3-button w3-hover-black" href="#">3</a>
+          <a class="w3-button w3-hover-black" href="#">4</a>
+          <a class="w3-button w3-hover-black" href="#">5</a>
+          <a class="w3-button w3-hover-black" href="#">»</a>
+        </div>
+      </div>
+
+      <footer id="myFooter">
+        <div class="w3-container w3-theme-l2 w3-padding-32">
+          <h4>Footer</h4>
+        </div>
+
+        <div class="w3-container w3-theme-l1">
+          <p>
+            Powered by
+            <a
+              href="https://www.w3schools.com/w3css/default.asp"
+              target="_blank"
+              >w3.css</a
+            >
+          </p>
+        </div>
+      </footer>
+
+      <!-- END MAIN -->
+    </div>
+
+    <script>
+      // Get the Sidebar and overlay elements
+      const mySidebar = document.getElementById("mySidebar");
+      const overlayBg = document.getElementById("myOverlay");
+
+      // Toggle sidebar visibility and overlay effect
+      function toggleSidebar() {
+        const isVisible = mySidebar.style.display === "block";
+        mySidebar.style.display = isVisible ? "none" : "block";
+        overlayBg.style.display = isVisible ? "none" : "block";
+      }
+
+      // Close the sidebar
+      function closeSidebar() {
+        mySidebar.style.display = "none";
+        overlayBg.style.display = "none";
+      }
+
+      // Color picker functionality
+      const colorOptions = document.querySelectorAll(".color-option");
+      const saveColorButton = document.getElementById("save-color");
+      const resetColorButton = document.getElementById("reset-color");
+
+      function changeBackgroundColor(color) {
+        document.body.style.backgroundColor = color;
+        sessionStorage.setItem("backgroundColor", color);
+      }
+
+      function saveBackgroundColor() {
+        const color = sessionStorage.getItem("backgroundColor");
+        if (color) {
+          localStorage.setItem("backgroundColor", color);
+        }
+      }
+
+      function resetBackgroundColor() {
+        localStorage.removeItem("backgroundColor");
+        sessionStorage.removeItem("backgroundColor");
+        document.body.style.backgroundColor = "";
+      }
+
+      colorOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+          changeBackgroundColor(option.dataset.color);
+        });
+      });
+
+      saveColorButton.addEventListener("click", saveBackgroundColor);
+      resetColorButton.addEventListener("click", resetBackgroundColor);
+
+      function loadBackgroundColor() {
+        const color =
+          localStorage.getItem("backgroundColor") ||
+          sessionStorage.getItem("backgroundColor");
+        if (color) {
+          document.body.style.backgroundColor = color;
+        }
+      }
+
+      loadBackgroundColor();
+    </script>
+  </body>
+</html>

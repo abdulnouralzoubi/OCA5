@@ -1,0 +1,78 @@
+<!-- 
+Task 3: Countdown Timer 
+Description: Create a simple countdown timer. 
+1. HTML: Provide an input field to set the timer duration in seconds and a "Start 
+Timer" button. 
+2. JavaScript:  
+• When the user clicks "Start Timer," display the countdown in a <p> element. 
+• Update the timer every second and display "Time's up!" when it reaches 
+zero.  
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 1.5rem;
+      }
+      #timer {
+        width: 300px;
+        height: 30px;
+        font-size: 1.5rem;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      #start {
+        width: 100px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input type="number" id="timer" placeholder="Enter time in seconds" />
+      <button id="start">Start Timer</button>
+      <p id="countdown"></p>
+    </div>
+    <script>
+      const timer = document.getElementById("timer"); // validated to be number by HTML input type
+      const start = document.getElementById("start");
+      const countdown = document.getElementById("countdown");
+      start.addEventListener("click", () => {
+        let time = timer.value;
+        let interval = setInterval(() => {
+          countdown.textContent = time + " seconds";
+          time--;
+          if (time < 0) {
+            clearInterval(interval);
+            countdown.textContent = "Time's up!";
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

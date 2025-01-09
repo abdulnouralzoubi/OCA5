@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Info</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      h1 {
+        color: green;
+      }
+      h2 {
+        color: #333;
+      }
+      p {
+        color: #666;
+      }
+      #logoutButton {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>User Information</h1>
+      <div id="userInfo"></div>
+      <button id="logoutButton" class="btn btn-danger mt-3">Logout</button>
+    </div>
+
+    <script>
+      window.onload = function () {
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const email = sessionStorage.getItem("currentUserEmail");
+        const userInfoDiv = document.getElementById("userInfo");
+
+        if (email) {
+          const currentUser = users.find((user) => user.email === email);
+          if (currentUser) {
+            userInfoDiv.innerHTML = `
+              <h2>Welcome, ${currentUser.fullName}</h2>
+              <p>Email: ${currentUser.email}</p>
+              <p>Phone: ${currentUser.phone}</p>
+            `;
+          } else {
+            userInfoDiv.innerHTML = `<p>User not found.</p>`;
+          }
+        } else {
+          userInfoDiv.innerHTML = `<p>No user logged in.</p>`;
+        }
+
+        document.getElementById("logoutButton").onclick = function () {
+          sessionStorage.clear();
+          window.location.href = "login.html";
+        };
+      };
+    </script>
+  </body>
+</html>

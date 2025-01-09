@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #text {
+        font-size: 1.5rem;
+        width: 300px;
+      }
+      #btn {
+        font-size: 1.5rem;
+      }
+      #to-comment {
+        display: flex;
+      }
+      #msg-to {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+        color: gray;
+      }
+      #msg-comment {
+        margin-top: 20px;
+        font-size: 2rem;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chat">
+      <h1>AJAX Request with JavaScript</h1>
+      <input type="text" id="text" />
+      <button id="btn">Send Comment</button>
+      <div id="to-comment">
+        <h1>Get comment:</h1>
+        <div id="msg-to"></div>
+      </div>
+      <div id="msg-comment"></div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+      const textInput = document.getElementById("text");
+      const msgDiv = document.getElementById("msg-to");
+      const chatDiv = document.getElementById("msg-comment");
+      const btn = document.getElementById("btn");
+
+      const updateMessage = () => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/updateMessage", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          msgDiv.innerText = xhr.responseText;
+        }
+        };
+        xhr.send("message=" + encodeURIComponent(textInput.value));
+      };
+
+      textInput.addEventListener("input", () => {
+        msgDiv.innerText = textInput.value;
+        updateMessage();
+      });
+      
+      btn.addEventListener("click", () => {
+        const newMsgDiv = document.createElement("div");
+        newMsgDiv.innerText = textInput.value;
+        chatDiv.appendChild(newMsgDiv);
+        textInput.value = "";
+        msgDiv.innerText = "";
+      });
+
+      textInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          const newMsgDiv = document.createElement("div");
+          newMsgDiv.innerText = textInput.value;
+          chatDiv.appendChild(newMsgDiv);
+          textInput.value = "";
+          msgDiv.innerText = "";
+        }
+      });
+      
+      });
+    </script>
+    </script>
+  </body>
+</html>

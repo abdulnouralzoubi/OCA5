@@ -1,0 +1,80 @@
+<!--
+Task 1: Dynamic To-Do List 
+Description: Create a to-do list where users can add and remove tasks dynamically. 
+1. HTML: Provide an input field and a button for adding tasks. 
+2. JavaScript:  
+• When the user clicks "Add Task," add the task to a list (as an <li> element). 
+• Each task should have a "Delete" button to remove it from the list.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgba(0, 255, 170, 0.5);
+      }
+      #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      h1 {
+        color: rgba(4, 119, 137, 0.826);
+        font-size: 3rem;
+      }
+      input,
+      #tasks {
+        font-size: large;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Todo List</h1>
+      <form id="task-form" action="">
+        <input type="text" id="add-task" placeholder="Add a new task"/>
+        <input type="submit" name="submit" id="submit"/> <!-- // utilize on-click -->
+      </form>
+      <ul id="tasks"></ul>
+    </div>
+    <script>
+      // add edit button besides the delete button
+      // check the code for deleting the assigned for delete text ()
+      const addTaskInput = document.getElementById("add-task");
+      const taskList = document.getElementById("tasks");
+
+      function addTask() {
+        const task = addTaskInput.value.trim();
+        if (!task) return;
+
+        const li = document.createElement("li");
+        li.textContent = task;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.style.fontSize = "large";
+        deleteButton.style.marginLeft = "20px";
+        // deleteButton.style.display = "flex";
+        // deleteButton.style.justifyContent = "spacebetween";
+        deleteButton.style.backgroundColor = "lightcoral";
+        deleteButton.onclick = () => taskList.removeChild(li);
+
+        li.appendChild(deleteButton);
+        taskList.appendChild(li);
+        addTaskInput.value = "";
+      }
+
+      document
+        .getElementById("task-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          addTask();
+        });
+    </script>
+  </body>
+</html>

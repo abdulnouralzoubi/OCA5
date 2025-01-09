@@ -1,0 +1,147 @@
+<!--
+Task 4: Dynamic Table Filter 
+Description: Create a searchable table. 
+1. HTML: Create a table with multiple rows of data and a search input field above 
+it. 
+2. JavaScript:  
+• When the user types in the input field, filter the table rows based on the 
+entered text. 
+• Highlight the matching text in the filtered rows. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      #search {
+        width: 300px;
+        height: 30px;
+        font-size: 1.5rem;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      #table {
+        width: 80%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+      #table th {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+      }
+      #table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="search" placeholder="Search for..." />
+    <table id="table">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Occupation</th>
+        <th>Location</th>
+      </tr>
+      <tr>
+        <td>John Doe</td>
+        <td>25</td>
+        <td>Software Engineer</td>
+        <td>New York</td>
+      </tr>
+      <tr>
+        <td>Jane Smith</td>
+        <td>30</td>
+        <td>Graphic Designer</td>
+        <td>Los Angeles</td>
+      </tr>
+      <tr>
+        <td>Michael Johnson</td>
+        <td>35</td>
+        <td>Project Manager</td>
+        <td>Chicago</td>
+      </tr>
+      <tr>
+        <td>Emily Davis</td>
+        <td>28</td>
+        <td>Data Analyst</td>
+        <td>San Francisco</td>
+      </tr>
+      <tr>
+        <td>David Wilson</td>
+        <td>40</td>
+        <td>Marketing Director</td>
+        <td>Miami</td>
+      </tr>
+      <tr>
+        <td>Sarah Brown</td>
+        <td>32</td>
+        <td>HR Specialist</td>
+        <td>Seattle</td>
+      </tr>
+      <tr>
+        <td>James Taylor</td>
+        <td>45</td>
+        <td>CEO</td>
+        <td>Boston</td>
+      </tr>
+      <tr>
+        <td>Linda Martinez</td>
+        <td>27</td>
+        <td>UX Designer</td>
+        <td>Austin</td>
+      </tr>
+    </table>
+    <script>
+      const search = document.getElementById("search");
+      const table = document.getElementById("table");
+      const tr = table.getElementsByTagName("tr");
+
+      search.addEventListener("keyup", function () {
+        const term = search.value.toLowerCase();
+        for (let i = 1; i < tr.length; i++) {
+          const td = tr[i].getElementsByTagName("td");
+          let found = false;
+          for (let j = 0; j < td.length; j++) {
+            const txtValue = td[j].textContent || td[j].innerText;
+            if (txtValue.toLowerCase().indexOf(term) > -1) {
+              found = true;
+              const regex = new RegExp(`(${term})`, "gi");
+              td[j].innerHTML = txtValue.replace(
+                regex,
+                '<span style="background-color: yellow;">$1</span>'
+              );
+            } else {
+              td[j].innerHTML = txtValue; // Remove previous highlights if any
+            }
+          }
+          if (found) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

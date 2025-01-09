@@ -1,0 +1,94 @@
+<!-- 
+Task 2: Temperature Converter 
+Description: Build a tool to convert temperatures between Celsius and Fahrenheit. 
+1. HTML: Provide two input fields for Celsius and Fahrenheit, and a "Convert" button. 
+2. JavaScript: 
+• When the user enters a value in one field and clicks "Convert," calculate and display 
+the equivalent temperature in the other field. 
+• Add validation to ensure the input is a valid number.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 1.5rem;
+      }
+      #celsius, #fahrenheit {
+        width: 200px;
+        height: 30px;
+        font-size: 1.5rem;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 10px;
+      }
+      .buttons :nth-child(n){
+        width: 100px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Temperature Converter</h1>
+    <div class="container">
+      <label for="celsius">Celsius:</label>
+      <input type="text" id="celsius" name="celsius" />
+      <label for="fahrenheit">Fahrenheit:</label>
+      <input type="text" id="fahrenheit" name="fahrenheit" />
+      <div class="buttons">
+        <button onclick="convert()">Convert</button>
+        <input type="reset" id="reset" name="reset" />
+      </div>
+    </div>
+
+    <script>
+      function convert() {
+        var celsius = document.getElementById("celsius").value;
+        var fahrenheit = document.getElementById("fahrenheit").value;
+        if (celsius !== "" && !isNaN(celsius)) {
+          fahrenheit = (parseFloat(celsius) * 9) / 5 + 32;
+          document.getElementById("fahrenheit").value = fahrenheit.toFixed(2);
+        } else if (fahrenheit !== "" && !isNaN(fahrenheit)) {
+          celsius = ((parseFloat(fahrenheit) - 32) * 5) / 9;
+          document.getElementById("celsius").value = celsius.toFixed(2);
+        } else {
+          alert("Please enter a valid number in one of the fields.");
+        }
+      }
+
+      document.getElementById("reset").addEventListener("click", function () {
+        document.getElementById("celsius").value = "";
+        document.getElementById("fahrenheit").value = "";
+      });
+    </script>
+  </body>
+</html>
